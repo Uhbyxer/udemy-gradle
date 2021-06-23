@@ -33,3 +33,45 @@ application {
     // Define the main class for the application.
     mainClassName = 'first.java.project.App'
 }
+
+task fooTask {
+    println("Hohho")
+    doFirst {
+      println "doFirst"
+    }
+    doLast {
+        println "doLast"
+    }
+}
+
+def myClosure = { mes ->
+    println "My Closure ${mes}"
+}
+
+task testGroovy {
+    def str = 'string'
+    println str.class
+
+    myClosure.call("John")
+
+    2.times {n -> myClosure n }
+    2.times { myClosure it }
+}
+
+task testCollections {
+    def list = [1, 7, 9];
+    println list
+    println list.class
+
+    list.each {println it}
+
+    def set = ["a", "b"] as Set<String>;
+    println set
+
+    def map = [key1: "aaaa", key2: "bbb"]
+    println map
+    println map.getClass()
+
+    println map.key1
+    println map["key2"]
+}
